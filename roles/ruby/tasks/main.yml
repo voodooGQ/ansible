@@ -1,0 +1,29 @@
+- name: Clone rbenv repo
+  git:
+    dest: ~/Code/github.com/rbenv/rbenv
+    repo: 'https://github.com/rbenv/rbenv.git'
+- name: Clone ruby-build repo
+  git:
+    dest: ~/Code/github.com/rbenv/ruby-build
+    repo: 'https://github.com/rbenv/rbenv.git'
+- name: Create symlink for rbenv
+  file:
+    src: ~/Code/github.com/rbenv/rbenv
+    dest: ~/.rbenv
+    state: link
+- name: Create symlink for ruby-build
+  file:
+    src: ~/Code/github.com/rbenv/ruby-build
+    dest: ~/.rbenv/plugins/ruby-build
+- name: Configure rbenv
+  shell: src/configure
+  args:
+    chdir: ~/.rbenv
+- name: Make rbenv
+  shell: make -C src
+  args:
+    chdir: ~/.rbenv
+- name: Stow ruby .dotfiles
+  shell: stow ruby
+  args:
+    chdir: ~/.dotfiles

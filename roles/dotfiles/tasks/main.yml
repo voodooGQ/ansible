@@ -1,0 +1,4 @@
+- name: Clone .dotfiles repo
+  git:
+    dest: ~/.dotfiles
+    repo: 'https://github.com/voodooGQ/dotfiles.git'

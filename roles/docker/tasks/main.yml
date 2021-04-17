@@ -1,0 +1,11 @@
+- name: Install Docker
+  become: true
+  apt:
+    pkg:
+      - docker.io
+      - docker-compose
+- name: Add "{{ ansible_user }}" to Docker Group
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: yes
