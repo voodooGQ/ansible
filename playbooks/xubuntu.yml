@@ -1,8 +1,9 @@
 - hosts: localhost
   roles:
-    - ../roles/dotfiles
     - ../roles/lib
     - ../roles/apps
+    - ../roles/dotfiles
     - ../roles/docker
     - ../roles/python
     - ../roles/ruby
+    - ../roles/zsh

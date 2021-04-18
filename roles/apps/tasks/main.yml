@@ -13,6 +13,7 @@
       - exfat-utils
       - flameshot
       - fzf
+      - git
       - highlight
       - htop
       - httpie
@@ -44,6 +45,7 @@
       - tmuxinator
       - unclutter
       - virtualbox
+      - virtualbox-guest-utils
       - w3m
       - w3m-img
       - wget

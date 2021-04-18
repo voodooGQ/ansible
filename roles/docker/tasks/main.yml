@@ -4,8 +4,16 @@
     pkg:
       - docker.io
       - docker-compose
-- name: Add "{{ ansible_user }}" to Docker Group
+- name: 'add users to docker group'
   user:
-    name: "{{ ansible_user }}"
-    groups: docker
-    append: yes
+    name: '{{ item }}'
+    groups: 'docker'
+    append: 'yes'
+  with_items: '{{ docker_group_members }}'
+  when: 'docker_group_members is defined'
+# - name: Add "{{ ansible_user }}" to Docker Group
+#   user:
+#     become: true
+#     name: "{{ ansible_user }}"
+#     groups: docker
+#     append: yes

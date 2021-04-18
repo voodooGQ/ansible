@@ -1,0 +1,20 @@
+- name: Install ZSH
+  become: true
+  apt:
+    pkg:
+      - zsh
+- name: Check if ~/.oh-my-zsh directory exists
+  stat:
+    path: ~/.oh-my-zsh
+  register: oh_my_zsh_result
+- name: Install oh-my-zsh
+  shell: sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  when: not oh_my_zsh_result.stat.exists
+- name: Remove the default .zshrc file
+  file:
+    dest: ~/.zshrc
+    state: absent
+- name: Stow zsh .dotfiles
+  shell: stow zsh
+  args:
+    chdir: ~/.dotfiles

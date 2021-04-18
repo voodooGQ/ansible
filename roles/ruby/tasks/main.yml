@@ -5,7 +5,11 @@
 - name: Clone ruby-build repo
   git:
     dest: ~/Code/github.com/rbenv/ruby-build
-    repo: 'https://github.com/rbenv/rbenv.git'
+    repo: 'https://github.com/rbenv/ruby-build.git'
+- name: Create plugins directory
+  file:
+    dest: ~/.rbenv/plugins
+    state: directory
 - name: Create symlink for rbenv
   file:
     src: ~/Code/github.com/rbenv/rbenv
@@ -15,6 +19,7 @@
   file:
     src: ~/Code/github.com/rbenv/ruby-build
     dest: ~/.rbenv/plugins/ruby-build
+    state: link
 - name: Configure rbenv
   shell: src/configure
   args:
